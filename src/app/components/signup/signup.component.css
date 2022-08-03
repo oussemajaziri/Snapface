@@ -1,0 +1,47 @@
+h1 {
+    text-align: center;
+    color: darkslategray;
+    font-size: 75px;
+    margin-bottom: 100px;
+}
+
+form div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+label {
+    color: darkslategray;
+    margin-left: 10%;
+    width: 30%;
+}
+
+input {
+    margin-top: 25px;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 75%;
+    height: 25px;
+    border-radius: 7px;
+    box-shadow: 1px 3px darkslategray;
+}
+
+
+
+.container {
+    display: grid;
+}
+
+button {
+    width: 90px;
+    height: 25px;
+    background-color: lightblue;
+    margin: 37px auto;
+    border-radius: 7px;
+}
+
+.message{
+    margin-top: 100px;
+    text-align: center;
+    color: red;
+}

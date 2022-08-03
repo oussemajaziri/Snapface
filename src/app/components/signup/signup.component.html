@@ -1,0 +1,64 @@
+<h1>SignUp</h1>
+
+<div>
+
+    <form [formGroup]="signupForm">
+
+        <div>
+            <label> Name :</label>
+            <input type="text" formControlName="userName" placeholder="Name" />
+            <div *ngIf='signupForm.controls["userName"].invalid &&
+            (signupForm.controls["userName"].dirty || signupForm.controls["userName"].touched)'>
+                <div class="message" *ngIf='signupForm.controls["userName"].errors.minlength'>
+                    Le nom doit avoir au moins 3 caractères
+                </div>
+            </div>
+            <div *ngIf='signupForm.controls["userName"].invalid &&
+            (signupForm.controls["userName"].dirty || signupForm.controls["userName"].touched)'>
+                <div class="message" *ngIf='signupForm.controls["userName"].errors.required'>
+                    Email est obligatoire
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <label> Email :</label>
+            <input type="text" formControlName="userEmail" placeholder="E-mail" />
+            <div *ngIf='signupForm.controls["userEmail"].invalid &&
+                    (signupForm.controls["userEmail"].dirty || signupForm.controls["userEmail"].touched)'>
+                <div class="message" *ngIf='signupForm.controls["userEmail"].errors.email'>
+                    Email non valide
+                </div>
+            </div>
+            <div *ngIf='signupForm.controls["userEmail"].invalid &&
+            (signupForm.controls["userEmail"].dirty || signupForm.controls["userEmail"].touched)'>
+                <div class="message" *ngIf='signupForm.controls["userEmail"].errors.required'>
+                    Email est obligatoire
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <label> Password :</label>
+            <input type="password" formControlName="userPwd" placeholder="Password" />
+            <div *ngIf='signupForm.controls["userPwd"].invalid &&
+            (signupForm.controls["userPwd"].dirty || signupForm.controls["userPwd"].touched)'>
+                <div class="message" *ngIf='signupForm.controls["userPwd"].errors.minlength'>
+                    Le nom doit avoir au moins 7 caractères
+                </div>
+            </div>
+            <div *ngIf='signupForm.controls["userPwd"].invalid &&
+            (signupForm.controls["userPwd"].dirty || signupForm.controls["userPwd"].touched)'>
+                <div class="message" *ngIf='signupForm.controls["userPwd"].errors.required'>
+                    Le mot de passe est obligatoire
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <button (click)="singup(signupForm.value)">SignUp</button>
+        </div>
+
+    </form>
+
+</div>
