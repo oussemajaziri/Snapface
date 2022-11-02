@@ -1,25 +1,27 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SignupComponent } from './signup.component';
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
-  let fixture: ComponentFixture<SignupComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ SignupComponent ]
-    })
-    .compileComponents();
-  });
+  let fbMock:any;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SignupComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    fbMock={
+      group:jest.fn()
+    }
+    component = new SignupComponent(fbMock);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should ngOnInit', () => {
+    component.ngOnInit();
+    expect(fbMock.group).toHaveBeenCalled();
+  });
+
+  it('should singup', () => {
+    const data = "data";
+    component.singup(data);
   });
 });

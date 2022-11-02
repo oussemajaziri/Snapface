@@ -1,25 +1,45 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { of } from 'rxjs';
 import { SingleFaceSnapComponent } from './single-face-snap.component';
 
 describe('SingleFaceSnapComponent', () => {
   let component: SingleFaceSnapComponent;
-  let fixture: ComponentFixture<SingleFaceSnapComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ SingleFaceSnapComponent ]
-    })
-    .compileComponents();
-  });
-
+  let faceSnapsServiceMock :any;
+  let activatedRouteMock : any;
   beforeEach(() => {
-    fixture = TestBed.createComponent(SingleFaceSnapComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    faceSnapsServiceMock={
+      getFaceSnapById:jest.fn(()=>of()),
+      snapFaceSnapById:jest.fn(()=>of())
+    }
+    activatedRouteMock = {
+      snapshot : {
+        params:jest.fn()
+      }
+    }
+    component = new SingleFaceSnapComponent(
+      faceSnapsServiceMock,
+      activatedRouteMock,
+    )
+    component.ngOnInit();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should ngOnInit', () => {
+    const faceSnapId = 'id';
+    component.buttonText = 'Oh Snap!';
+    jest.spyOn(activatedRouteMock.snapshot,'params').mockReturnValue(faceSnapId);
+    component.ngOnInit();
+  });
+
+  it('should onSnap', () => {
+    component.buttonText = 'Oh Snap!';
+    component.onSnap();
+  });
+
+  it('should unSnap', () => {
+    component.buttonText = 'unSnap!';
+    component.onSnap();
   });
 });

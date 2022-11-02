@@ -1,25 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FaceSnapListComponent } from './face-snap-list.component';
 
 describe('FaceSnapListComponent', () => {
   let component: FaceSnapListComponent;
-  let fixture: ComponentFixture<FaceSnapListComponent>;
+  let faceSnapsServiceMock : any;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ FaceSnapListComponent ]
-    })
-    .compileComponents();
-  });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FaceSnapListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    faceSnapsServiceMock={
+      getAllFaceSnaps:jest.fn()
+    }
+    component = new FaceSnapListComponent(faceSnapsServiceMock);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should ngOnInit', () => {
+    component.ngOnInit();
+    expect(faceSnapsServiceMock.getAllFaceSnaps).toHaveBeenCalled();
+  });
+
+
 });
